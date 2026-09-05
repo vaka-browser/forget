@@ -684,5 +684,15 @@
  "Välj en bakgrund eller ladda upp din egen.": "Velg en bakgrunn eller last opp din egen.",
  "Sök anonymt efter": "Søk anonymt",
  "Ahmia (onion-sök)": "Ahmia (løksøk)",
- "Bygger nya kretsar från noll — ingenting sparas mellan sessionerna.": "Bygger nye kretser fra bunnen av – ingenting lagres mellom øktene."
+ "Bygger nya kretsar från noll — ingenting sparas mellan sessionerna.": "Bygger nye kretser fra bunnen av – ingenting lagres mellom øktene.",
+ "Pausa": "Pause",
+ "Fortsätt": "Fortsette",
+ "Pausad": "Pause",
+ "Klar": "Ferdig",
+ "Avbruten": "Kansellert",
+ "Misslyckades": "Mislyktes",
+ "Klar (behållen)": "Ferdig (beholdt)",
+ "hämtat…": "hentet...",
+ "Blockerad": "Blokkert",
+ "hot": "trussel"
 }

@@ -684,5 +684,15 @@
  "Du är skyddad": "Você está protegido",
  "Ahmia (onion-sök)": "Ahmia (pesquisa de cebola)",
  "Sök anonymt efter": "Pesquise anonimamente",
- "Bygger nya kretsar från noll — ingenting sparas mellan sessionerna.": "Constrói novos circuitos a partir do zero – nada é guardado entre sessões."
+ "Bygger nya kretsar från noll — ingenting sparas mellan sessionerna.": "Constrói novos circuitos a partir do zero – nada é guardado entre sessões.",
+ "Pausa": "Pausa",
+ "Fortsätt": "Continuar",
+ "Pausad": "Pausado",
+ "Klar": "Concluído",
+ "Avbruten": "Cancelado",
+ "Misslyckades": "Fracassado",
+ "Klar (behållen)": "Concluído (mantido)",
+ "hämtat…": "buscado…",
+ "Blockerad": "Bloqueado",
+ "hot": "ameaça"
 }

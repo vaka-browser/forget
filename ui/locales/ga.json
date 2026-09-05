@@ -684,5 +684,15 @@
  "Skyddet är inbyggt, så du slipper installera osäkra tredjeparts-tillägg. Dessa är alltid aktiva:": "Tá an chosaint ionsuite, mar sin ní gá duit síntí tríú páirtí neamhshábháilte a shuiteáil. Bíonn siad seo gníomhach i gcónaí:",
  "Ahmia (onion-sök)": "Ahmia (cuardach oinniún)",
  "Sök anonymt efter": "Cuardaigh gan ainm",
- "Bygger nya kretsar från noll — ingenting sparas mellan sessionerna.": "Tógann sé ciorcaid nua ón tús - ní shábháiltear aon rud idir seisiúin."
+ "Bygger nya kretsar från noll — ingenting sparas mellan sessionerna.": "Tógann sé ciorcaid nua ón tús - ní shábháiltear aon rud idir seisiúin.",
+ "Pausa": "Sos",
+ "Fortsätt": "Lean ort",
+ "Pausad": "Sos",
+ "Klar": "Déanta",
+ "Avbruten": "Ar ceal",
+ "Misslyckades": "Theip",
+ "Klar (behållen)": "Déanta (Coinnithe)",
+ "hämtat…": "faighte…",
+ "Blockerad": "bactha",
+ "hot": "bagairt"
 }

@@ -684,5 +684,15 @@
  "Välj en bakgrund eller ladda upp din egen.": "Фонды таңдаңыз немесе өзіңіз жүктеп салыңыз.",
  "Sök anonymt efter": "Анонимді түрде іздеңіз",
  "Ahmia (onion-sök)": "Ахмия (пияз іздеу)",
- "Bygger nya kretsar från noll — ingenting sparas mellan sessionerna.": "Жаңа тізбектерді нөлден құрастырады — сеанстар арасында ештеңе сақталмайды."
+ "Bygger nya kretsar från noll — ingenting sparas mellan sessionerna.": "Жаңа тізбектерді нөлден құрастырады — сеанстар арасында ештеңе сақталмайды.",
+ "Pausa": "Кідірту",
+ "Fortsätt": "Жалғастыру",
+ "Pausad": "Кідіртілді",
+ "Klar": "Дайын",
+ "Avbruten": "Бас тартылды",
+ "Misslyckades": "Сәтсіз",
+ "Klar (behållen)": "Дайын (сақталды)",
+ "hämtat…": "әкелінді…",
+ "Blockerad": "Блокталған",
+ "hot": "қауіп"
 }

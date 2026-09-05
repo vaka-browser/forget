@@ -684,5 +684,15 @@
  "Öppna länkar från andra program här.": "Բացեք հղումները այլ ծրագրերից այստեղ:",
  "Ahmia (onion-sök)": "Ահմիա (սոխի որոնում)",
  "Sök anonymt efter": "Որոնել անանուն",
- "Bygger nya kretsar från noll — ingenting sparas mellan sessionerna.": "Ստեղծում է նոր սխեմաներ զրոյից. նստաշրջանների միջև ոչինչ չի պահպանվում:"
+ "Bygger nya kretsar från noll — ingenting sparas mellan sessionerna.": "Ստեղծում է նոր սխեմաներ զրոյից. նստաշրջանների միջև ոչինչ չի պահպանվում:",
+ "Pausa": "Դադար",
+ "Fortsätt": "Շարունակեք",
+ "Pausad": "Դադարեցված է",
+ "Klar": "Կատարված է",
+ "Avbruten": "Չեղարկված է",
+ "Misslyckades": "Չհաջողվեց",
+ "Klar (behållen)": "Կատարված է (պահված է)",
+ "hämtat…": "բերված…",
+ "Blockerad": "Արգելափակված",
+ "hot": "սպառնալիք"
 }

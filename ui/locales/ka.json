@@ -684,5 +684,15 @@
  "Filen sparas i sessionsmappen — flytta den om du vill behålla den, annars raderas den när du stänger fönstret.": "ფაილი ინახება სესიის საქაღალდეში — გადაიტანეთ იგი თუ გსურთ შეინახოთ, წინააღმდეგ შემთხვევაში წაიშლება ფანჯრის დახურვისას.",
  "Ahmia (onion-sök)": "ახმია (ხახვის ძებნა)",
  "Sök anonymt efter": "მოძებნეთ ანონიმურად",
- "Bygger nya kretsar från noll — ingenting sparas mellan sessionerna.": "აშენებს ახალ სქემებს ნულიდან - არაფერი შეინახება სესიებს შორის."
+ "Bygger nya kretsar från noll — ingenting sparas mellan sessionerna.": "აშენებს ახალ სქემებს ნულიდან - არაფერი შეინახება სესიებს შორის.",
+ "Pausa": "პაუზა",
+ "Fortsätt": "განაგრძეთ",
+ "Pausad": "შეჩერდა",
+ "Klar": "შესრულებულია",
+ "Avbruten": "გაუქმდა",
+ "Misslyckades": "ვერ მოხერხდა",
+ "Klar (behållen)": "შესრულებულია (შენარჩუნებულია)",
+ "hämtat…": "მოტანილი…",
+ "Blockerad": "დაბლოკილია",
+ "hot": "მუქარა"
 }

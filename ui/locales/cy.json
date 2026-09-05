@@ -684,5 +684,15 @@
  "Skyddet är inbyggt, så du slipper installera osäkra tredjeparts-tillägg. Dessa är alltid aktiva:": "Mae'r amddiffyniad wedi'i ymgorffori, felly nid oes rhaid i chi osod estyniadau trydydd parti anniogel. Mae'r rhain bob amser yn weithredol:",
  "Sök anonymt efter": "Chwiliwch yn ddienw",
  "Ahmia (onion-sök)": "Ahmia (chwiliad winwns)",
- "Bygger nya kretsar från noll — ingenting sparas mellan sessionerna.": "Yn adeiladu cylchedau newydd o'r dechrau - nid oes dim yn cael ei arbed rhwng sesiynau."
+ "Bygger nya kretsar från noll — ingenting sparas mellan sessionerna.": "Yn adeiladu cylchedau newydd o'r dechrau - nid oes dim yn cael ei arbed rhwng sesiynau.",
+ "Pausa": "Oedwch",
+ "Fortsätt": "Parhau",
+ "Pausad": "Wedi seibio",
+ "Klar": "Wedi'i wneud",
+ "Avbruten": "Wedi'i ganslo",
+ "Misslyckades": "Wedi methu",
+ "Klar (behållen)": "Wedi'i wneud (Wedi'i gadw)",
+ "hämtat…": "nôl…",
+ "Blockerad": "Wedi'i rwystro",
+ "hot": "bygythiad"
 }

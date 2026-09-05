@@ -684,5 +684,15 @@
  "Skyddet är inbyggt, så du slipper installera osäkra tredjeparts-tillägg. Dessa är alltid aktiva:": "Qoruma daxilidir, ona görə də təhlükəli üçüncü tərəf uzantılarını quraşdırmaq məcburiyyətində deyilsiniz. Bunlar həmişə aktivdir:",
  "Sök anonymt efter": "Anonim axtarın",
  "Ahmia (onion-sök)": "Ahmia (soğan axtarışı)",
- "Bygger nya kretsar från noll — ingenting sparas mellan sessionerna.": "Sıfırdan yeni sxemlər qurur — seanslar arasında heç nə yadda saxlanmır."
+ "Bygger nya kretsar från noll — ingenting sparas mellan sessionerna.": "Sıfırdan yeni sxemlər qurur — seanslar arasında heç nə yadda saxlanmır.",
+ "Pausa": "Fasilə",
+ "Fortsätt": "Davam et",
+ "Pausad": "Fasilə verildi",
+ "Klar": "Bitdi",
+ "Avbruten": "Ləğv edildi",
+ "Misslyckades": "Uğursuz oldu",
+ "Klar (behållen)": "Bitdi (saxlanılır)",
+ "hämtat…": "gətirildi...",
+ "Blockerad": "Blok edilib",
+ "hot": "təhlükə"
 }
