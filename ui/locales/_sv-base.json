@@ -1,0 +1,22 @@
+[
+"Ingen historik. Inga spår. Allt försvinner när du stänger.",
+"Allt går genom Tor, ingenting skrivs till disken. När du stänger fönstret finns sessionen inte kvar — inte hos någon annan, och inte hos oss.",
+"Den här sessionen lever i datorns minne — den raderas när du stänger fönstret.",
+"Historiken finns bara i den här sessionen. Den raderas när du stänger fönstret.",
+"Ingen sida laddas i klartext. Ingenting sparas på disken.",
+"Filen sparas i sessionsmappen — flytta den om du vill behålla den, annars raderas den när du stänger fönstret.",
+"DuckDuckGo (.onion)",
+"Du är skyddad",
+"En farlig fil blockerades",
+"Kom igång på en minut.",
+"Skyddet är inbyggt, så du slipper installera osäkra tredjeparts-tillägg. Dessa är alltid aktiva:",
+"Språk för gränssnittet.",
+"Välj en bakgrund eller ladda upp din egen.",
+"Öppna länkar från andra program här.",
+"Okänt fel — starta om appen.",
+"Anonym webbläsare som glömmer allt. All trafik går genom Tor-nätverket, och hela sessionen — historik, kakor, cache, nedladdningar — ligger i datorns minne och raderas när du stänger fönstret. Inget konto, ingen molntjänst, ingen statistik: vi kan inte se vad du gör, ens om vi ville.",
+"Version 0.1.0 · byggd på Chromium (Electron) + Tor",
+"Ahmia (onion-sök)",
+"Sök anonymt efter",
+"Bygger nya kretsar från noll — ingenting sparas mellan sessionerna."
+]
