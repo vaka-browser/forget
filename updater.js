@@ -18,7 +18,8 @@ const { app, net, shell } = require('electron');
 const REPO = 'northcrafto/forget-dl';
 const ASSET = { linux: 'Forget.AppImage', win32: 'Forget-Setup.exe', darwin: 'Forget-mac.zip' };
 const CHECK_AFTER = 20 * 1000;
-const CHECK_EVERY = 6 * 60 * 60 * 1000;
+const CHECK_EVERY = 30 * 60 * 1000;
+const FOCUS_MIN_GAP = 10 * 60 * 1000;   // koll vid fokus, men högst var 10:e minut
 
 let state = { phase: 'idle', version: '', url: '', size: 0, got: 0, file: '' };
 let notify = () => {};
@@ -55,9 +56,18 @@ async function check(manual) {
       if (manual) notify('toast', 'Du har redan senaste versionen.');
       return state;
     }
+    // Samma version som redan är känd (hämtad eller erbjuden)? Rör inget – annars
+    // skulle en färdighämtad fil "glömmas" och bannern hoppa tillbaka till "Hämta".
+    if (version === state.version && (state.phase === 'ready' || state.phase === 'available')) {
+      if (state.phase === 'ready') notify('update-ready', state.version);
+      else notify('update-available', { version, size: state.size });
+      return state;
+    }
     const want = ASSET[process.platform];
     const asset = (j.assets || []).find((a) => a.name === want);
     if (!asset) { if (manual) notify('toast', 'Ingen fil för din plattform i den nya versionen.'); return state; }
+    // En ännu nyare version än den som låg klar → släng den gamla filen, erbjud den nya.
+    if (state.phase === 'ready' && state.file) { try { fs.unlinkSync(state.file); } catch {} }
     state = { phase: 'available', version, url: asset.browser_download_url, size: asset.size || 0, got: 0, file: '' };
     notify('update-available', { version, size: state.size });
     return state;
@@ -103,8 +113,16 @@ async function download() {
 
 /* Installera: Linux byter ut AppImage-filen och startar om. Windows kör
    installeraren. macOS öppnar zip-filen (osignerad → användaren drar in den). */
-function install() {
+async function install() {
   if (state.phase !== 'ready' || !state.file) return false;
+  // Färsk koll först: har en ännu nyare version släppts sedan filen hämtades? Då
+  // erbjuds den i stället (måste hämtas genom Tor igen) – aldrig omstart till gammal version.
+  const had = state.version;
+  try { await Promise.race([check(false), new Promise((r) => setTimeout(r, 8000))]); } catch {}
+  if (state.phase !== 'ready' || state.version !== had) {
+    if (state.phase === 'available') notify('toast', 'En ännu nyare version (' + state.version + ') finns – hämta den i stället.');
+    return false;
+  }
   try {
     if (process.platform === 'linux' && process.env.APPIMAGE) {
       const cur = process.env.APPIMAGE;
@@ -129,6 +147,11 @@ function start(broadcast) {
   notify = broadcast || (() => {});
   setTimeout(() => { check(false); }, CHECK_AFTER);
   setInterval(() => { check(false); }, CHECK_EVERY);
+  let lastFocus = 0;
+  app.on('browser-window-focus', () => {
+    const n = Date.now();
+    if (n - lastFocus > FOCUS_MIN_GAP && state.phase !== 'downloading') { lastFocus = n; check(false); }
+  });
 }
 
 module.exports = { start, check, download, install, getState: () => state };
