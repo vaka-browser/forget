@@ -75,6 +75,7 @@ contextBridge.exposeInMainWorld('net', {
 contextBridge.exposeInMainWorld('pw', {
   list: () => ipcRenderer.invoke('pw:list'),
   save: (c) => ipcRenderer.invoke('pw:save', c),
+  openPopup: (d) => ipcRenderer.send('pw:popup-open', d),   // flytande "Spara lösenordet?"-notis
   del: (id) => ipcRenderer.invoke('pw:delete', id),
   onOffer: (cb) => ipcRenderer.on('pw-offer', (_e, c) => cb(c)),
 });

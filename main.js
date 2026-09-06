@@ -613,6 +613,44 @@ ipcMain.handle('pw:save', (_e, c) => {
   savePwList(l); return { ok: true };
 });
 ipcMain.handle('pw:delete', (_e, id) => { savePwList(loadPw().filter((p) => p.id !== id)); return { ok: true }; });
+
+/* "Spara lösenord"-notisen = flytande kort uppe till höger, som nedladdningsrutan: en
+ * WebContentsView OVANPÅ fliken (skalets DOM ligger under sidans native-vy). Tema (ljus/mörk)
+ * följer skalet och skickas med som query. */
+const PW_W = 372;
+function positionPwPopup(ctx, h) {
+  if (!ctx || !ctx.pwView || !ctx.win || ctx.win.isDestroyed()) return;
+  const cb = ctx.win.getContentBounds();
+  if (typeof h === 'number') ctx._pwH = h;
+  const top = Math.max(0, Math.round((ctx.topInset || 92) + 6));
+  const height = Math.max(60, Math.min(ctx._pwH || 150, cb.height - top - 12));
+  try { ctx.pwView.setBounds({ x: Math.round(cb.width - PW_W - 8), y: top, width: PW_W, height }); } catch {}
+}
+function closePwPopup(ctx) {
+  if (!ctx || !ctx.pwView) return;
+  try { ctx.win.contentView.removeChildView(ctx.pwView); } catch {}
+  try { ctx.pwView.webContents.close(); } catch {}
+  if (ctx._pwRepos) { try { ctx.win.removeListener('resize', ctx._pwRepos); ctx.win.removeListener('move', ctx._pwRepos); } catch {} ctx._pwRepos = null; }
+  ctx.pwView = null;
+}
+function openPwPopup(ctx, cred, theme) {
+  if (!ctx || !ctx.win || ctx.win.isDestroyed() || !cred) return;
+  closePwPopup(ctx);                                   // ny fråga ersätter en ev. gammal
+  const view = new WebContentsView({ webPreferences: { nodeIntegration: true, contextIsolation: false, transparent: true } });   // transparent: bara kortet syns, inte vyns rektangel
+  try { view.setBackgroundColor('#00000000'); } catch {}
+  ctx.pwView = view; ctx._pwH = 150;
+  ctx.win.contentView.addChildView(view);
+  positionPwPopup(ctx);
+  const repos = () => positionPwPopup(ctx);
+  ctx._pwRepos = repos;
+  ctx.win.on('resize', repos); ctx.win.on('move', repos);
+  view.webContents.loadFile(path.join(__dirname, 'ui', 'pwpopup.html'), { query: { theme: theme === 'dark' ? 'dark' : 'light' } });
+  view.webContents.on('did-finish-load', () => { try { view.webContents.send('pw-cred', cred); } catch {} });
+}
+const pwCtxOf = (e) => [...wins.values()].find((c) => c.pwView && !c.pwView.webContents.isDestroyed() && c.pwView.webContents === e.sender);
+ipcMain.on('pw:popup-open', (e, d) => { const ctx = ctxFor(e); if (ctx && d && d.cred) openPwPopup(ctx, d.cred, d.theme); });
+ipcMain.on('pw:popup-close', (e) => { const ctx = pwCtxOf(e); if (ctx) closePwPopup(ctx); });
+ipcMain.on('pw:popup-size', (e, h) => { const ctx = pwCtxOf(e); if (ctx && typeof h === 'number') positionPwPopup(ctx, h); });
 ipcMain.on('pw:capture', (e, c) => {
   if (!currentAcctKey) return;             // utloggad → spara/erbjud inte lösenord
   if (!c || !c.password) return;
