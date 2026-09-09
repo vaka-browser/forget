@@ -298,6 +298,22 @@ body.reduce-motion *, body.reduce-motion *::before, body.reduce-motion *::after 
 }
 
 /* ── Mörkläge: Skugga har ett mörkt LILA chrome (anonymt Tor-tema) ── */
+/* ── Bokmärkesfält (Brave-stil: samma yta som adressraden, favicon + namn, inget kryss) ── */
+#bmbar { align-items: center; gap: 2px; padding: 0 10px 6px; margin-top: -3px; overflow-x: auto; overflow-y: hidden; white-space: nowrap; background: var(--color-chrome-2); border-bottom: 1px solid var(--color-line); scrollbar-width: none; }
+#bmbar::-webkit-scrollbar { display: none; }
+.chrome-bar.has-bmbar { border-bottom-color: transparent; }
+.bmchip { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 9px; border-radius: 7px; cursor: pointer; color: var(--color-navy-900); font-size: 12px; font-weight: 500; max-width: 180px; flex: none; user-select: none; }
+.bmchip:hover { background: rgb(28 43 58 / .08); }
+.bmchip img, .bmchip .bmglobe { width: 16px; height: 16px; border-radius: 3px; flex: none; }
+.bmchip .bmglobe { display: grid; place-items: center; opacity: .6; }
+.bmchip .bmglobe svg { width: 14px; height: 14px; }
+.bmchip > span:not(.bmglobe) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+body.incog #bmbar { background: #100a1e; border-bottom-color: rgba(124,58,237,.22); }
+body.incog .bmchip { color: #e9e2f7; }
+:root[data-theme="dark"] #bmbar { background: #161122; border-bottom-color: #2a2140; }
+:root[data-theme="dark"] .bmchip { color: #cdbfe0; }
+:root[data-theme="dark"] .bmchip:hover { background: rgb(255 255 255 / .09); color: #efe9f6; }
+
 :root[data-theme="dark"] body { background: #0d0912; color: #efe9f6; }
 :root[data-theme="dark"] .chrome-top { background: #0d0912; }
 :root[data-theme="dark"] .chrome-bar { background: #161122; border-bottom-color: #2a2140; }

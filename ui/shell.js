@@ -1635,8 +1635,44 @@ $('bm-star').addEventListener('click', () => {
   let l = getBookmarks();
   if (isBookmarked(active.url)) l = l.filter((b) => b.url !== active.url);
   else l.unshift({ url: active.url, title: active.title || active.url, favicon: active.favicon || null });
-  saveBookmarks(l); updateStar();
+  saveBookmarks(l); updateStar(); renderBookmarkBar();
 });
+function bmShort(e) {
+  let t = e.title || '';
+  try { if (!t || t === e.url) t = new URL(e.url).hostname.replace(/^www\./, ''); } catch {}
+  return t.length > 22 ? t.slice(0, 21) + '…' : t;
+}
+// Bokmärkesfältet: sparade sidor som klickbara chips under adressfältet (à la Brave).
+function renderBookmarkBar() {
+  const bar = $('bmbar'); if (!bar) return;
+  const list = getBookmarks();
+  const tb = $('toolbar');
+  if (!list.length) { bar.style.display = 'none'; bar.innerHTML = ''; if (tb) tb.classList.remove('has-bmbar'); sendBounds(); return; }
+  bar.style.display = 'flex';
+  if (tb) tb.classList.add('has-bmbar');
+  bar.innerHTML = list.map((e) => {
+    const fav = e.favicon
+      ? '<img src="' + escapeHtml(e.favicon) + '" alt="" onerror="this.outerHTML=\'<span class=bmglobe><svg class=ic><use href=#i-globe /></svg></span>\'">'
+      : '<span class="bmglobe"><svg class="ic"><use href="#i-globe" /></svg></span>';
+    return '<div class="bmchip" data-url="' + escapeHtml(e.url) + '" title="' + escapeHtml(e.title || e.url) + '">'
+      + fav + '<span>' + escapeHtml(bmShort(e)) + '</span></div>';
+  }).join('');
+  bar.querySelectorAll('.bmchip').forEach((c) => {
+    const url = c.dataset.url;
+    c.addEventListener('click', () => {
+      try { if (typeof closeSettings === 'function' && !$('settings').classList.contains('hidden')) closeSettings(); } catch {}
+      try { if (typeof closeBookmarks === 'function' && !$('bookmarks').classList.contains('hidden')) closeBookmarks(); } catch {}
+      if (active) guardedNavigate(active, url); else { const t = createTab(url); switchTab(t); }
+    });
+    c.addEventListener('auxclick', (ev) => { if (ev.button === 1) { ev.preventDefault(); createTab(url); } });  // mittenklick = ny flik
+    c.addEventListener('contextmenu', (ev) => {   // högerklick = ta bort från fältet (som Brave, fast utan meny)
+      ev.preventDefault();
+      saveBookmarks(getBookmarks().filter((b) => b.url !== url)); renderBookmarkBar(); updateStar();
+      try { showToast('Bokmärket togs bort'); } catch {}
+    });
+  });
+  sendBounds();   // fältet ändrar höjd → flytta native-webbvyn så den inte täcker fältet
+}
 function rowFav(favicon) {
   return favicon ? `<img class="hist-fav" src="${favicon}">` : `<span class="hist-fav" style="display:grid;place-items:center;color:#8ba3bf"><svg class="ic" style="width:13px;height:13px"><use href="#i-globe" /></svg></span>`;
 }
@@ -1649,7 +1685,7 @@ function openBookmarks() {
     const row = document.createElement('div'); row.className = 'hist-row';
     row.innerHTML = `${rowFav(e.favicon)}<div class="hist-txt"><div class="hist-title">${escapeHtml(e.title)}</div><div class="hist-url">${escapeHtml(e.url.replace(/^https?:\/\/(www\.)?/, ''))}</div></div><button class="row-btn" title="Ta bort"><svg class="ic ic-sm"><use href="#i-trash" /></svg></button>`;
     row.addEventListener('click', () => { closeBookmarks(); if (active) guardedNavigate(active, e.url); });
-    row.querySelector('.row-btn').addEventListener('click', (ev) => { ev.stopPropagation(); saveBookmarks(getBookmarks().filter((x) => x.url !== e.url)); openBookmarks(); updateStar(); });
+    row.querySelector('.row-btn').addEventListener('click', (ev) => { ev.stopPropagation(); saveBookmarks(getBookmarks().filter((x) => x.url !== e.url)); openBookmarks(); updateStar(); renderBookmarkBar(); });
     list.appendChild(row);
   });
   hideOverlayElements();
@@ -1924,6 +1960,7 @@ greet(); setInterval(greet, 60000); // uppdatera hälsningen om timmen rullar ö
 applyStoredBg(); applyTopSitesMode(); initAdblock();
 sendBounds();
 restoreTabs();
+renderBookmarkBar();
 setTimeout(sendBounds, 300);
 
 /* ── Hacker-intro (enkel välkomst, första gången) ── */

@@ -1,6 +1,6 @@
 {
   "name": "forget-browser",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "description": "Forget – anonym via Tor, glömmer allt när du stänger",
   "main": "main.js",
   "scripts": {
